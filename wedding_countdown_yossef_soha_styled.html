@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>يوسف و سها - العد التنازلي</title>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html, body {
+    height:100%;
+  }
+  body {
+    background:#111114;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Reem Kufi', sans-serif;
+    padding:2rem 1rem;
+  }
+  .card {
+    background:#1b1b1f;
+    border:0.5px solid #2e2e33;
+    border-radius:16px;
+    padding:2.5rem 2rem;
+    text-align:center;
+    max-width:560px;
+    width:100%;
+  }
+  .label { font-size:13px; letter-spacing:1px; color:#D9B662; }
+  .names {
+    font-family:'Aref Ruqaa', serif;
+    font-size:34px;
+    font-weight:700;
+    color:#f2f2f0;
+    margin:12px 0 6px;
+  }
+  .divider { display:flex; align-items:center; justify-content:center; gap:10px; margin:16px 0 20px; }
+  .divider .line { width:44px; height:1px; background:#C6A756; }
+  .divider .icon { color:#C6A756; font-size:18px; }
+  .details { font-size:14px; color:#b3b3ba; line-height:2; }
+  .grid {
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    max-width:480px;
+    margin:28px auto 8px;
+  }
+  .box {
+    background:#232328;
+    border:0.5px solid #2e2e33;
+    border-radius:12px;
+    padding:1rem 0.5rem;
+  }
+  .box .num { font-family:'Aref Ruqaa', serif; font-size:28px; font-weight:700; }
+  .box .unit { font-size:12px; color:#9a9aa1; margin-top:4px; }
+  .c-gold { color:#D9B662; }
+  .c-blue { color:#6FA8D6; }
+  .c-pink { color:#D97FA0; }
+  .c-purple { color:#AE8FD6; }
+  .msg { margin-top:22px; font-size:13px; color:#D9B662; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="label">دعوة زفاف</div>
+    <div class="names">يوسف &amp; سها</div>
+    <div class="divider">
+      <div class="line"></div>
+      <span class="icon">☾</span>
+      <div class="line"></div>
+    </div>
+    <div class="details">
+      الأحد، 30 أغسطس 2026<br>
+      قاعة كريستال بالاس، نادي اتحاد الشرطة<br>
+      الساعة 7:30 مساءً
+    </div>
+
+    <div class="grid">
+      <div class="box"><div class="num c-purple" id="d">--</div><div class="unit">يوم</div></div>
+      <div class="box"><div class="num c-blue" id="h">--</div><div class="unit">ساعة</div></div>
+      <div class="box"><div class="num c-pink" id="m">--</div><div class="unit">دقيقة</div></div>
+      <div class="box"><div class="num c-gold" id="s">--</div><div class="unit">ثانية</div></div>
+    </div>
+
+    <div class="msg" id="msg">بإذن الله تجمعنا الفرحة قريباً</div>
+  </div>
+
+<script>
+  const target = new Date('2026-08-30T19:30:00+03:00').getTime();
+  const d = document.getElementById('d'), h = document.getElementById('h'),
+        m = document.getElementById('m'), s = document.getElementById('s'),
+        msg = document.getElementById('msg');
+  function tick(){
+    const diff = target - Date.now();
+    if(diff <= 0){
+      d.textContent='0'; h.textContent='0'; m.textContent='0'; s.textContent='0';
+      msg.textContent = 'مبارك، ليلة العمر النهارده';
+      return;
+    }
+    d.textContent = Math.floor(diff/86400000);
+    h.textContent = Math.floor((diff%86400000)/3600000);
+    m.textContent = Math.floor((diff%3600000)/60000);
+    s.textContent = Math.floor((diff%60000)/1000);
+  }
+  tick();
+  setInterval(tick, 1000);
+</script>
+</body>
+</html>
